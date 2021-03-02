@@ -1,8 +1,18 @@
 '''
 Following the background image removal tutorial at: https://flothesof.github.io/removing-background-scikit-image.html
 '''
-from skimage import io as skio
+# import necessary libraries
+from skimage import filters, io as skio
+import matplotlib.pyplot as plt
 
+# load our source image
 img = skio.imread('./images/tutorial_girl.jpg')
-print("shape of image: {}".format(img.shape))
-print("dtype of image: {}".format(img.dtype))
+
+# apply sobel filters to find image outlines
+sobel = filters.sobel(img)
+
+# process the image
+plt.imshow(sobel)
+
+# save the output to our output directory
+plt.savefig('./output/outlines.png')
